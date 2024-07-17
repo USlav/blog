@@ -77,6 +77,10 @@
 	font-size: 50px;
   }
 
+  p {
+	margin: 30px 0;
+  }
+
   .center {
 	width: 1000px;
 	margin: 0 auto;
@@ -158,6 +162,23 @@
 	background-color: #4C5E78;
 	text-align: center;
 	padding: 50px 30px 0 30px;
+	border: 1px solid grey;
+	border-radius: 15px;
+  }
+
+  .blog-objava-recent-post {
+	
+	padding: 15px;
+	background-color:#1E2631;
+	border-radius: 15px;
+	text-overflow: ellipsis;
+	overflow: hidden;
+  }
+
+  .blog-objava-post {
+	background-color: #4C5E78;
+	text-align: center;
+	padding: 200px 30px 0 30px;
 	border: 1px solid grey;
 	border-radius: 15px;
   }
