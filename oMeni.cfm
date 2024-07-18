@@ -9,7 +9,7 @@
 		<h2>&lt Pišem tudi blog! /&gt</h2>
 
 		<!---renderPosts--->
-		<cfset  recentPosts = application.posts.renderRecentPosts()>
+		<cfset  recentPosts = application.posts.renderRecentPosts(3)>
 
 		<div class="recent-posts">
 			<cfoutput query="recentPosts">

@@ -5,7 +5,7 @@
 	<div class="center">
 		<form id="form_addBlog" action="blog.cfm" method="POST">
 			<label for="title">Blog title:</label><br>
-			<input type="text" id="title" name="title"><br>
+			<input type="text" id="title" name="title" required="true"><br>
 			<label for="datePublished">Publish date:</label><br>
 			<input type="date" id="datePublished" name="datePublished"><br>
 			<label for="description">Blog content::</label><br>

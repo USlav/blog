@@ -64,7 +64,6 @@
 						<cfelse>							
 								<h3><a href="objavaBlog.cfm?postId=#id#">#title#</a></h3>							
 						</cfif>
-						
 					</div>
 					
 					<div class="small-date">
@@ -75,10 +74,8 @@
 					</span>
 				</div>
 			</cfoutput>
-			
 		</div>
 	</div>
 </main>
-
 </body>
 </html>

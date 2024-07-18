@@ -23,10 +23,9 @@ component displayname="posts"{
 			);
 		}else{
 			f.qResult = queryExecute(
-			"SELECT title, description, datePublished, id 
+			"SELECT TOP (:num) title, description, datePublished, id 
 			FROM post
-			ORDER BY datePublished DESC
-			LIMIT (:num)"
+			ORDER BY datePublished DESC"
 			,{
 				num={value=arguments.numOfPosts, cfsqltype="integer"}
 			}

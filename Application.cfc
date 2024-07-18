@@ -1,29 +1,20 @@
-<cfcomponent output="false" >
-	<cfset  this.name = 'blog' >
-	<cfset this.applicationTimeout = createTimespan(0,2,0,0)/>
-	<cfset this.datasource = 'blog'/>
-	<cfset this.sessionManagement = true/>
-	<cfset this.setClientCookies = true >
-	<cfset this.sessionTimeout = createTimespan(0,0,30,0)/>
+component{
+	this.name = 'blog' 
+	this.applicationTimeout = createTimespan(0,2,0,0)
+	this.datasource = 'blog'
+	this.sessionManagement = true
+	this.setClientCookies = true 
+ 	this.sessionTimeout = createTimespan(0,0,30,0)
 	<!--- on application start method--->
-	<cffunction name="onApplicationStart" returntype="boolean">
-		<cfset application.posts = createObject("component", 'cfc.posts')/>
-		
-		
-		<cfreturn true />
-	</cffunction>
+	boolean function onApplicationStart(){
+		application.posts = createObject("component", 'cfc.posts')
+		return true;
+	}
 	<!---onRequestStart() method --->
-	<cffunction name="onRequestStart" returntype="boolean">
-		<cfargument name="targetPage" type="string" required="true">
-		<cfif isDefined('url.restartApp')>
-			<cfset this.onApplicationStart() >
-		</cfif>
-
-		<!---<cfif listFind(arguments.targetPage,'admin', '/') AND (NOT structKeyExists(session,'stLoggedInUser') )><!---OR NOT session.stLoggedInUser.userRole EQ 'Administrator'--->
-			<cflocation url="/cfTraining/index.cfm?noaccess" />
-			
-		</cfif>--->
-		
-		<cfreturn true/>
-	</cffunction>
-</cfcomponent>
+	boolean function onRequestStart(required string targetPage){
+		if (isDefined('url.restartApp')){
+			this.onApplicationStart() 
+		}
+		return true;
+	}
+}
