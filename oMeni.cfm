@@ -1,5 +1,4 @@
-<cfinclude template="cfc/posts.cfc">
-<cf_front>
+<cfinclude template="front.cfm">
 <main>
 	<h1>&lt O meni! /&gt</h1>
 	<div class="center">
@@ -10,13 +9,13 @@
 		<h2>&lt Pišem tudi blog! /&gt</h2>
 
 		<!---renderPosts--->
-		<cfset  recentPosts = renderRecentPosts()>
+		<cfset  recentPosts = application.posts.renderRecentPosts()>
 
 		<div class="recent-posts">
 			<cfoutput query="recentPosts">
 				<div class="recent-post">
 					<div class="post">
-						<h3 class="post-title"><a href="objavaBlog.cfm?postID=#id#">#title#</a></h3>
+						<h3 class="post-title"><a href="objavaBlog.cfm?postId=#id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
 						<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>

@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
 
 	<meta charset="UTF-8">
@@ -19,6 +17,5 @@
 			<li><a href="blog.cfm">Blog</a></li>
 			<li class="prijava">Prijava</li>
 		</ul>
-	</nav>	
-	
+	</nav>		
 </header>

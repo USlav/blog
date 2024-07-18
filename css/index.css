@@ -111,7 +111,6 @@
 	border-radius: 15px;
 	text-overflow: ellipsis;
 	overflow: hidden;
-	
   }
 
   .post {
@@ -120,9 +119,6 @@
 	padding: 50px 30px 0 30px;
 	border: 1px solid grey;
 	border-radius: 15px;
-	
-	
-
   }
   
    .post-title {
@@ -140,7 +136,6 @@
 
   .bold-menu {
 	font-weight: bold;
-	
   }
 
   a {
@@ -157,7 +152,6 @@
 	flex-direction: column;
 	gap: 2em;
   }
- 
  
   .blog-recent-post {
 	height: 300px;
@@ -177,8 +171,6 @@
   }
 
   .blog-objava-recent-post {
-	
-	padding: 15px;
 	background-color:#1E2631;
 	border-radius: 15px;
 	text-overflow: ellipsis;
@@ -192,3 +184,23 @@
 	border: 1px solid grey;
 	border-radius: 15px;
   }
+
+  .option-menu {
+	display: flex;
+	justify-content: flex-end;
+	
+	gap: 1em;
+  }
+
+  .option {
+	background: #157498;
+	padding: 12px;
+	border-radius: 15px;
+	margin-bottom: 2em;
+  }
+
+  .action {
+	color: yellow;
+  }
+
+  
