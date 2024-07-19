@@ -8,6 +8,7 @@ component{
 	<!--- on application start method--->
 	boolean function onApplicationStart(){
 		application.posts = createObject("component", 'cfc.posts')
+		application.comments = createObject("component", 'cfc.comments')
 		return true;
 	}
 	<!---onRequestStart() method --->
