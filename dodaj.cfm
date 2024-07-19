@@ -3,7 +3,7 @@
 <main>
 	<h1>&lt Dodaj blog! /&gt</h1>
 	<div class="center">
-		<form id="form_addBlog" action="blog.cfm" method="POST">
+		<form id="form_addBlog" action="blog.cfm">
 			<label for="title">Blog title:</label><br>
 			<input type="text" id="title" name="title" required="true"><br>
 			<label for="datePublished">Publish date:</label><br>

@@ -16,7 +16,7 @@
 			<li class="bold-menu"><a href="index.cfm">&lt Domov /&gt</a></li>
 			<li><a href="oMeni.cfm">O meni</a></li>
 			<li><a href="blog.cfm">Blog</a></li>
-			<li class="prijava">Prijava</li>
+			<li class="prijava"><a href="prijava.cfm">Prijava</a></li>
 		</ul>
 	</nav>		
 </header>

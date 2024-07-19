@@ -9,6 +9,7 @@ component{
 	boolean function onApplicationStart(){
 		application.posts = createObject("component", 'cfc.posts')
 		application.comments = createObject("component", 'cfc.comments')
+		application.authentication = createObject("component", 'cfc.authentication')
 		return true;
 	}
 	<!---onRequestStart() method --->

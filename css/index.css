@@ -1,109 +1,120 @@
 
-/*
-  1. Use a more-intuitive box-sizing model.
-*/
-*, *::before, *::after {
+	/*
+	1. Use a more-intuitive box-sizing model.
+	*/
+	*, *::before, *::after {
 	box-sizing: border-box;
-  }
-  /*
+	}
+	/*
 	2. Remove default margin
-  */
-  * {
+	*/
+	* {
 	margin: 0;
-  }
-  /*
+	}
+	/*
 	Typographic tweaks!
 	3. Add accessible line-height
 	4. Improve text rendering
-  */
-  body {
+	*/
+	body {
 	line-height: 1.5;
 	-webkit-font-smoothing: antialiased;
 	color: white;
 	background-color: #1E2631;
 	font-family: Arial, Helvetica, sans-serif;
-  }
-  /*
+	}
+	/*
 	5. Improve media defaults
-  */
-  img, picture, video, canvas, svg {
+	*/
+	img, picture, video, canvas, svg {
 	display: block;
 	max-width: 100%;
-  }
-  /*
+	}
+	/*
 	6. Remove built-in form typography styles
-  */
-  input, button, textarea, select {
+	*/
+	input, button, textarea, select {
 	font: inherit;
-  }
-  /*
+	}
+	/*
 	7. Avoid text overflows
-  */
-  p, h1, h2, h3, h4, h5, h6 {
+	*/
+	p, h1, h2, h3, h4, h5, h6 {
 	overflow-wrap: break-word;
-  }
-  /*
+	}
+	/*
 	8. Create a root stacking context
-  */
-  #root, #__next {
+	*/
+	#root, #__next {
 	isolation: isolate;
-  }
+	}
 
-  #top-bar{
+	#top-bar{
 	background-color: #157498;
-  }
+	}
 
-  .menu {
+	.menu {
 	display: flex;
 	align-items: flex-start;
 	list-style-type: none;
 	font-size: 20px;
 	padding-left: 500px;
-  }
+	}
 
-  .image{
+	.prijava {
+	margin: 0 0 0 auto;
+	}
+
+	.login-form{
+	display: flex;
+	flex-direction: column;
+	gap:1em;	
+	}
+
+	.image{
 	height: 200px;
-  }
-  img{
+	}
+
+	img{
 	width: 100%;
 	height: 100%;
-  }
+	}
 
-  li{
+	li{
 	padding: 10px 10px;
-  }
-  h1 {
+	}
+	h1 {
 	margin: 20px 380px;
 	font-size: 50px;
-  }
+	}
 
-  p {
+	p {
 	margin: 30px 0;
-  }
+	}
 
-  .center {
+	.center {
 	width: 1000px;
 	margin: 0 auto;
-  }
+	}
 
-  .description {
+	.description {
 	margin: 20px 0;
-  }
+	}
 
-  h2 {
+	h2 {
 	text-align: center;
 	margin-top: 50px;
 	margin-bottom: 20px;
-  }
+	}
 
-  .recent-posts {
+	.recent-posts {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 1em 48px ;
-  }
- 
- 
-  .recent-post {
+	}
+
+
+	.recent-post {
 	width: 300px;
 	height: 300px;
 	padding: 15px;
@@ -111,110 +122,110 @@
 	border-radius: 15px;
 	text-overflow: ellipsis;
 	overflow: hidden;
-  }
+	}
 
-  .post {
+	.post {
 	background-color: #4C5E78;
 	text-align: center;
 	padding: 50px 30px 0 30px;
 	border: 1px solid grey;
 	border-radius: 15px;
-  }
-  
-   .post-title {
+	}
+
+	.post-title {
 	width: 210px;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
-   }
+	}
 
-  .small-date {
+	.small-date {
 	font-size: 15px;
 	text-align: right;
 	margin-top: 5px;
-  }
+	}
 
-  .bold-menu {
+	.bold-menu {
 	font-weight: bold;
-  }
+	}
 
-  a {
+	a {
 	color: white;
 	text-decoration: none;
-  }
-   
-  .container {
-	display: flex;
-  }
+	}
 
-  .blog-recent-posts {
+	.container {
+	display: flex;
+	}
+
+	.blog-recent-posts {
 	display: flex;
 	flex-direction: column;
 	gap: 2em;
-  }
- 
-  .blog-recent-post {
+	}
+
+	.blog-recent-post {
 	height: 300px;
 	padding: 15px;
 	background-color: #243246;
 	border-radius: 15px;
 	text-overflow: ellipsis;
 	overflow: hidden;
-  }
+	}
 
-  .blog-post {
+	.blog-post {
 	background-color: #4C5E78;
 	text-align: center;
 	padding: 50px 30px 0 30px;
 	border: 1px solid grey;
 	border-radius: 15px;
-  }
+	}
 
-  .blog-objava-recent-post {
+	.blog-objava-recent-post {
 	background-color:#1E2631;
 	border-radius: 15px;
 	text-overflow: ellipsis;
 	overflow: hidden;
-  }
+	}
 
-  .blog-objava-post {
+	.blog-objava-post {
 	background-color: #4C5E78;
 	text-align: center;
 	padding: 200px 30px 0 30px;
 	border: 1px solid grey;
 	border-radius: 15px;
-  }
+	}
 
-  .option-menu {
+	.option-menu {
 	display: flex;
 	justify-content: flex-end;
 	gap: 1em;
-  }
+	}
 
-  .option {
+	.option {
 	background: #157498;
 	padding: 12px;
 	border-radius: 15px;
 	margin-bottom: 2em;
-  }
+	}
 
-  .action {
+	.action {
 	color: yellow;
-  }
+	}
 
-  .comment-title {
+	.comment-title {
 	margin: 0;
-  }
+	}
 
-  .comment {
+	.comment {
 	border: 5px red solid;
 	background-color: #4C5E78;
 	border-radius: 15px;
 	border: 1px solid gray;
 	margin-bottom: 10px;
 	padding: 0 20px;
-  }
+	}
 
-  .addComment {
+	.addComment {
 	margin: 30px 0;
-  }
+	}
