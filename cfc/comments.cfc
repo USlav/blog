@@ -3,7 +3,7 @@ component displayname="comments" {
 	public query function renderCommentsByPostId(required numeric postId) {
 		var f = {};
 		f.qResult = queryExecute(
-			"SELECT comment 
+			"SELECT id, comment 
 			 FROM comment
 			 WHERE postId = :id",
 			{id={value=arguments.postId, cfsqltype="integer"}}
@@ -22,8 +22,50 @@ component displayname="comments" {
 			}
 		);
 	}
-	
-	public query function deleteComment(required numeric commentId) {
-		
+
+	remote struct function deleteComment() {
+		var result = {};
+		var f = {};
+		try {
+			// Read the raw request body content
+			var requestBody = toString(getHttpRequestData().content);
+			// Log the raw request body for debugging
+			writeLog(text="Raw request body: #requestBody#", type="info");
+
+			// Parse the JSON content into a ColdFusion structure
+			var requestData = deserializeJson(requestBody);
+
+			// Ensure the commentId is being passed correctly
+			if (!structKeyExists(requestData, "commentId")) {
+				throw(message="commentId required but was not passed in", detail="The commentId is missing from the request payload.");
+			}
+
+			var commentId = requestData.commentId;
+
+			// Execute the DELETE query
+			queryExecute(
+				"DELETE FROM comment WHERE id = :commentId",
+				{ commentId: { value: commentId, cfsqltype: "integer" } }
+			);
+
+			result["status"] = "success";
+			result["message"] = "Comment deleted successfully.";
+		} catch (any e) {
+			// Log the error details
+			writeLog(
+				text="Error in deleteComment function: #e.message# - #e.detail#",
+				type="error"
+			);
+			result["status"] = "error";
+			result["message"] = "Failed to delete comment: " & e.message;
+		}
+
+		// Set the content type to JSON and return the result
+		getPageContext().getResponse().setContentType("application/json");
+		return result;
 	}
+	
+	
+	
+	
 }

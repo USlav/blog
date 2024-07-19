@@ -1,6 +1,9 @@
 <cfinclude template="front.cfm">
-<cfset  currentDate = now() >
-<cfset  currentPost = url.postId>
+<cfif NOT structKeyExists(url, 'postId')>
+	<cflocation url="index.cfm">
+</cfif>
+<cfset currentDate = now() >
+<cfset currentPost = url.postId>
 <cfif structKeyExists(form, 'commentSubmit')>
 	<cfset application.comments.addComment(form.comment, url.postId, currentDate) />
 </cfif>	
@@ -27,10 +30,10 @@
 		<cfset renderedComments = application.comments.renderCommentsByPostId(url.postId)>
 		<h1 class="comment-title">&lt komentarji /&gt</h1>
 		<cfoutput query="renderedComments">
-			<div class="comment">
+			<div class="comment" id="comment-#id#">
 				<p>#comment#</p>
 				<div class="deleteComment">
-					Delete
+					<button class="deleteButton" id="#id#">Delete</button> 
 				</div>
 			</div>
 		</cfoutput>
