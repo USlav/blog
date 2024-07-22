@@ -14,9 +14,9 @@
 	<nav id="top-bar">
 		<ul class="menu">
 			<li class="bold-menu"><a href="index.cfm">&lt Domov /&gt</a></li>
-			<li><a href="oMeni.cfm">O meni</a></li>
+			<li><a href="aboutMe.cfm">O meni</a></li>
 			<li><a href="blog.cfm">Blog</a></li>
-			<li class="prijava"><a href="prijava.cfm">Prijava</a></li>
+			<li class="prijava"><a href="login.cfm">Prijava</a></li>
 		</ul>
 	</nav>		
 </header>

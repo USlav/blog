@@ -1,13 +1,15 @@
 <cfinclude template="front.cfm">
-<cfif NOT structKeyExists(url, 'postId')>
-	<cflocation url="index.cfm">
-</cfif>
-<cfset currentDate = now() >
-<cfset currentPost = url.postId>
-<cfif structKeyExists(form, 'commentSubmit')>
-	<cfset application.comments.addComment(form.comment, url.postId, currentDate) />
-</cfif>	
-
+<cfscript>
+	if(!structKeyExists(url, "postId")){
+		location("index.cfm");
+	}
+	currentDate = now();
+	currentPost = url.postId;
+	if (structKeyExists(form, 'commentSubmit')){
+		application.comments.addComment(form.comment, url.postId, currentDate);
+	}
+	renderedComments = application.comments.getCommentsByPostId(url.postId);
+</cfscript>
 <main>
 	<h1>&lt Blog! /&gt</h1>
 
@@ -27,7 +29,6 @@
 				</span>
 			</cfoutput>	
 		</div>
-		<cfset renderedComments = application.comments.renderCommentsByPostId(url.postId)>
 		<h1 class="comment-title">&lt komentarji /&gt</h1>
 		<cfoutput query="renderedComments">
 			<div class="comment" id="comment-#id#">
@@ -40,7 +41,7 @@
 		
 		<cfoutput>
 			<div class="addComment">
-				<form id="form_addComment" action="objavaBlog.cfm?postId=#currentPost#" method="POST">
+				<form id="form_addComment" action="blogPost.cfm?postId=#currentPost#" method="POST">
 					<label for="comment">Dodaj komentar:</label><br>
 					<textarea name="comment" rows="10" cols="100" ></textarea><br>
 					<input type="submit" value="Submit" name="commentSubmit">

@@ -1,6 +1,6 @@
 
 component displayname="comments" {
-	public query function renderCommentsByPostId(required numeric postId) {
+	public query function getCommentsByPostId(required numeric postId) {
 		var f = {};
 		f.qResult = queryExecute(
 			"SELECT id, comment 
@@ -60,8 +60,6 @@ component displayname="comments" {
 			result["message"] = "Failed to delete comment: " & e.message;
 		}
 
-		// Set the content type to JSON and return the result
-		getPageContext().getResponse().setContentType("application/json");
 		return result;
 	}
 	

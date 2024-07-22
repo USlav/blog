@@ -12,13 +12,13 @@
 			<cfelse>
 				<cfoutput>
 					<h2 class="action">Login failed!</h2>
-					<button href="prijava.cfm">RETRY</button>
+					<button href="login.cfm">RETRY</button>
 				</cfoutput>
 			</cfif>
 		<cfelse>
 			<cfoutput>
 				<h3>Prijavi se:</h3>
-				<form action="prijava.cfm" class="login-form" method="POST">
+				<form action="login.cfm" class="login-form" method="POST">
 						<label for="username">Username:</label>
 						<input type="text" id="username" name="username" placeholder="Enter your Username" required>
 						<label for="password">Password:</label>

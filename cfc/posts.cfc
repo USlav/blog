@@ -14,7 +14,7 @@ component displayname="posts"{
 
 	public query function renderRecentPosts(numeric numOfPosts=0){
 		var f = {};
-		if (numOfPosts EQ 0) {
+		if (numOfPosts == 0) {
 			f.qResult = queryExecute(
 			"SELECT title, description, datePublished, id 
 			FROM post
@@ -38,11 +38,13 @@ component displayname="posts"{
 		
 		queryExecute(
 			"INSERT INTO post (title, description, accountId, isPublished, datePublished) 
-			VALUES (:title, :description, 1, 0, :datePublished)"
+			VALUES (:title, :description, :accountId, :isPublished, :datePublished)"
 			,{
 				title={value=arguments.title, cfsqltype="varchar"},
 				datePublished={value=arguments.datePublished, cfsqltype="timestamp"},
-				description={value=arguments.description, cfsqltype="varchar" }
+				description={value=arguments.description, cfsqltype="varchar" },
+				accountId={value=1, cfsqltype="numeric"},
+				isPublished={value=0, cfsqltype="numeric"}
 			}
 		);
 		

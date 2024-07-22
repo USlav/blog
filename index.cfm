@@ -21,7 +21,7 @@
 			<cfoutput query="recentPosts">
 				<div class="recent-post">
 					<div class="post">
-						<h3 class="post-title"><a href="objavaBlog.cfm?postId=#id#">#title#</a></h3>
+						<h3 class="post-title"><a href="blogPost.cfm?postId=#id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
 						<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>

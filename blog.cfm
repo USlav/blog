@@ -1,39 +1,31 @@
-
-
-<cfif structKeyExists(form, 'blogSubmit')>
-	<cfif form.datePublished EQ ''>
-		<cfset form.datePublished = now() />
-	</cfif>
-	
-	<cfset application.posts.addPost(form.title,form.datePublished,form.description) />
-	<cflocation url="blog.cfm" />
-</cfif>	
-
 <cfinclude template="front.cfm">
+<cfscript>
+	if (structKeyExists(form, "blogSubmit")){
+		if (form.datePublished == ""){
+			form.datePublished = now();
+		}
+		application.posts.addPost(form.title,form.datePublished,form.description);
+		location("blog.cfm");
+	}
 
-<cfif structKeyExists(url, 'deleteId')>
-	<cfif url.deleteId NEQ 0>
-		<cfset application.posts.deletePostbyId(url.deleteId) >
-		<cflocation url="blog.cfm">
-	<cfelse>
-		<cfoutput>
-			<h2 class="action">Select blog to delete!!</h2>
-		</cfoutput>
-	</cfif>
-</cfif>
+	if (structKeyExists(url, "deleteId")){
+		if(url.deleteId != 0){
+			application.posts.deletePostbyId(url.deleteId);
+			location("blog.cfm");
+		}else{
+			writeOutput("<h2 class='action'>Select blog to delete!!</h2>", "html");
+		}
+	}
 
-<cfif structKeyExists(url, 'updateId')>
-	<cfif url.updateId NEQ 0>
-		<cfset application.posts.addPostbyId(url.updateId) >
-		<cflocation url="blog.cfm">
-	<cfelse>
-		<cfoutput>
-			<h2 class="action">Select blog to update!!</h2>
-		</cfoutput>
-	</cfif>
-	
-</cfif>
-
+	if (structKeyExists(url, "updateId")){
+		if (url.updateId != 0){
+			application.posts.addPostbyId(url.updateId);
+			location("blog.cfm");
+		}else{
+			writeOutput("<h2 class='action'>Select blog to update!!</h2>", "html");
+		}	
+	}
+</cfscript>
 
 <main>
 	<h1>&lt Blog! /&gt</h1>
@@ -41,7 +33,7 @@
 
 		<nav class="option-menu">
 			<div class="option">
-				<h3><a href="dodaj.cfm">Dodaj</a></h3>
+				<h3><a href="addBlog.cfm">Dodaj</a></h3>
 			</div>
 			<div class="option">
 				<h3><a href="blog.cfm?deleteId=0">Izbriši</a></h3>
@@ -57,17 +49,17 @@
 			<cfoutput query="recentPosts">
 				<div class="blog-recent-post"><a href="blog.cfm?deleteId=#id#">
 					<div class="blog-post">
-						<cfif structKeyExists(url, 'deleteId')>
+						<cfif structKeyExists(url, "deleteId")>
 								<h3><a href="blog.cfm?deleteId=#id#">#title#</a></h3>							
-						<cfelseif structKeyExists(url,'updateId')>
+						<cfelseif structKeyExists(url,"updateId")>
 								<h3><a href="update.cfm?updateId=#id#">#title#</a></h3>
 						<cfelse>							
-								<h3><a href="objavaBlog.cfm?postId=#id#">#title#</a></h3>							
+								<h3><a href="blogPost.cfm?postId=#id#">#title#</a></h3>							
 						</cfif>
 					</div>
 					
 					<div class="small-date">
-						<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>
+						<h4>#dateFormat(datePublished, "dd.mm.yyyy")#</h4>
 					</div>
 					<span>
 						<p>#description#</p>
