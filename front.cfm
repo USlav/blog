@@ -1,5 +1,6 @@
+<cfprocessingdirective pageencoding="utf-8">
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="sl"> 
 <head>
 
 	<meta charset="UTF-8">
@@ -16,7 +17,11 @@
 			<li class="bold-menu"><a href="index.cfm">&lt Domov /&gt</a></li>
 			<li><a href="aboutMe.cfm">O meni</a></li>
 			<li><a href="blog.cfm">Blog</a></li>
-			<li class="prijava"><a href="login.cfm">Prijava</a></li>
+			<cfif NOT structKeyExists(session, "isUserLoggedIn")>
+				<li class="prijava"><a href="login.cfm?logIn">Prijava</a></li>
+			<cfelse>
+				<li class="prijava"><a href="login.cfm?logOut">Odjava</a></li>
+			</cfif>
 		</ul>
 	</nav>		
 </header>

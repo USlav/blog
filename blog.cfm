@@ -1,3 +1,4 @@
+<cfprocessingdirective pageencoding="utf-8">
 <cfinclude template="front.cfm">
 <cfscript>
 	if (structKeyExists(form, "blogSubmit")){
@@ -12,8 +13,6 @@
 		if(url.deleteId != 0){
 			application.posts.deletePostbyId(url.deleteId);
 			location("blog.cfm");
-		}else{
-			writeOutput("<h2 class='action'>Select blog to delete!!</h2>", "html");
 		}
 	}
 
@@ -21,28 +20,38 @@
 		if (url.updateId != 0){
 			application.posts.addPostbyId(url.updateId);
 			location("blog.cfm");
-		}else{
-			writeOutput("<h2 class='action'>Select blog to update!!</h2>", "html");
 		}	
 	}
 </cfscript>
 
 <main>
+	<cfif structKeyExists(url, "deleteId")>
+		<cfif url.deleteId EQ 0>
+			<cfoutput>
+				<h2 class='action'>Select blog to delete!!</h2>
+			</cfoutput>
+		</cfif>
+	<cfelseif structKeyExists(url, "updateId")>
+		<cfif url.updateId EQ 0>
+			<cfoutput><h2 class='action'>Select blog to update!!</h2></cfoutput>
+		</cfif>
+	</cfif>
+	
 	<h1>&lt Blog! /&gt</h1>
 	<div class="center">
-
-		<nav class="option-menu">
-			<div class="option">
-				<h3><a href="addBlog.cfm">Dodaj</a></h3>
-			</div>
-			<div class="option">
-				<h3><a href="blog.cfm?deleteId=0">Izbriši</a></h3>
-			</div>
-			<div class="option">
-				<h3><a href="blog.cfm?updateId=0">Uredi</a></h3>
-			</div>
-		</nav>
-
+		<cfif structKeyExists(session, "isUserLoggedIn")>
+			<nav class="option-menu">
+				<div class="option">
+					<h3><a href="addBlog.cfm">Dodaj</a></h3>
+				</div>
+				<div class="option">
+					<h3><a href="blog.cfm?deleteId=0">Izbriši</a></h3>
+				</div>
+				<div class="option">
+					<h3><a href="blog.cfm?updateId=0">Uredi</a></h3>
+				</div>
+			</nav>
+		</cfif>	
 		<cfset  recentPosts = application.posts.renderRecentPosts()>
 
 		<div class="blog-recent-posts">

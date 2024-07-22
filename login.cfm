@@ -1,18 +1,20 @@
-<cfinclude template="front.cfm">
+<cfif structKeyExists(url, "logOut")>
+	<cfset application.authentication.logoutUser()>
+</cfif>
 
+<cfinclude template="front.cfm">
 <main>
 	<div class="center">
 		<cfif structKeyExists(form, 'confirmUser')>
-			<cfdump var="#form.username#" label="form">
-			<cfset  isUserLoggedIn = application.authentication.authenticateUser(form.username, form.password) >
-			<cfif isUserLoggedIn EQ true>
+			<cfset session.isUserLoggedIn = application.authentication.authenticateUser(form.username, form.password)>
+			<cfset session.userId = application.authentication.getUserId(form.username, form.password)>
+			<cfif session.isUserLoggedIn EQ true>
 				<cfoutput>
 					<h2 class="action">User succesfully logged in!</h2>
 				</cfoutput>
 			<cfelse>
 				<cfoutput>
 					<h2 class="action">Login failed!</h2>
-					<button href="login.cfm">RETRY</button>
 				</cfoutput>
 			</cfif>
 		<cfelse>
@@ -26,7 +28,8 @@
 						<input type="submit" name="confirmUser" value="Potrdi">		
 				</form>
 			</cfoutput>
-		</cfif>
+		</cfif>	
+		
 	</div>
 </main>
 </body>

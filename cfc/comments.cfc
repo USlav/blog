@@ -3,22 +3,36 @@ component displayname="comments" {
 	public query function getCommentsByPostId(required numeric postId) {
 		var f = {};
 		f.qResult = queryExecute(
-			"SELECT id, comment 
+			"SELECT comment.id, comment.comment, comment.datePublished, comment.accountId, account.username 
 			 FROM comment
-			 WHERE postId = :id",
+			 INNER JOIN account ON comment.accountId = account.id
+			 WHERE comment.postId = :id",
 			{id={value=arguments.postId, cfsqltype="integer"}}
 		);
 		return f.qResult;
 	}
+
 	
-	public function addComment(required string comment, required numeric postId, required date datePublished) {
+	/* public query function getUserWhoCommented(required numeric accountId) {
+		var f = {};
+		f.qResult = queryExecute(
+			"SELECT username 
+			FROM account
+			WHERE id = :accountId",
+			{accountId={value=arguments.accountId, cfsqltype="integer"}}
+		);
+		return f.qResult;
+	} */
+	
+	public function addComment(required string comment, required numeric postId, required date datePublished, required numeric userId) {
 		queryExecute(
 			"INSERT INTO comment (postId, comment, datePublished, accountId)
-			VALUES (:postId, :comment,:datePublished, 1)",
+			VALUES (:postId, :comment,:datePublished, :userId)",
 			{
 				postId={value=arguments.postId, cfsqltype="integer"},
 				comment={value=arguments.comment, cfsqltype="varchar"},
-				datePublished={value=arguments.datePublished, cfsqltype="timestamp"}
+				datePublished={value=arguments.datePublished, cfsqltype="timestamp"},
+				userId={value=arguments.userId, cfsqltype="integer"}
 			}
 		);
 	}

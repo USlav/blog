@@ -1,3 +1,4 @@
+<cfprocessingdirective pageencoding="utf-8">
 <cfinclude template="front.cfm">
 <main>
 	<h1>&lt O meni! /&gt</h1>

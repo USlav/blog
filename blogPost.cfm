@@ -6,7 +6,7 @@
 	currentDate = now();
 	currentPost = url.postId;
 	if (structKeyExists(form, 'commentSubmit')){
-		application.comments.addComment(form.comment, url.postId, currentDate);
+		application.comments.addComment(form.comment, url.postId, currentDate, session.userId);
 	}
 	renderedComments = application.comments.getCommentsByPostId(url.postId);
 </cfscript>
@@ -33,6 +33,11 @@
 		<cfoutput query="renderedComments">
 			<div class="comment" id="comment-#id#">
 				<p>#comment#</p>
+				
+				<div class="small-date">
+					<p>Posted by: #username#</p>
+					<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>
+				</div>
 				<div class="deleteComment">
 					<button class="deleteButton" id="#id#">Delete</button> 
 				</div>
@@ -43,7 +48,7 @@
 			<div class="addComment">
 				<form id="form_addComment" action="blogPost.cfm?postId=#currentPost#" method="POST">
 					<label for="comment">Dodaj komentar:</label><br>
-					<textarea name="comment" rows="10" cols="100" ></textarea><br>
+					<textarea name="comment" rows="10" cols="100" required=true></textarea><br>
 					<input type="submit" value="Submit" name="commentSubmit">
 				</form>
 			</div>
