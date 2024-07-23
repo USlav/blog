@@ -36,7 +36,7 @@ component displayname="posts"{
 		return f.qResult;
 	}
 	
-	public function addPost(required string title, required date datePublished, required string description) {
+	public function addPost(required string title, required date datePublished, required string description, required numeric accountId) {
 		
 		queryExecute(
 			"INSERT INTO post (title, description, accountId, isPublished, datePublished) 
@@ -45,7 +45,7 @@ component displayname="posts"{
 				title={value=arguments.title, cfsqltype="varchar"},
 				datePublished={value=arguments.datePublished, cfsqltype="timestamp"},
 				description={value=arguments.description, cfsqltype="varchar" },
-				accountId={value=1, cfsqltype="numeric"},
+				accountId={value=arguments.accountId, cfsqltype="numeric"},
 				isPublished={value=0, cfsqltype="numeric"}
 			},{datasource = application.datasource}
 		);

@@ -5,7 +5,8 @@
 		if (form.datePublished == ""){
 			form.datePublished = now();
 		}
-		application.posts.addPost(form.title,form.datePublished,form.description);
+		
+		application.posts.addPost(form.title,form.datePublished,form.description, session.userId.id);
 		location("blog.cfm");
 	}
 

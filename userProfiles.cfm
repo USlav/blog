@@ -14,12 +14,16 @@
 					<th>admin</th>
 				</tr>
 				<cfoutput query="allUsers">
-					<tr>
-						<td>#username#</td>
-						<td>#email#</td>
-						<td>#dateFormat(dateCreated, application.dateMask)#</td>
-						<td>#isAdmin#</td>
-						<td><a href="javascript:confirmDelete(#session.userId.id#);">Delete</a></td>
+					<tr class="user-#allusers.id#">
+						<td>#allusers.username#</td>
+						<td>#allUsers.email#</td>
+						<td>#dateFormat(allUsers.dateCreated, application.dateMask)#</td>
+						<td>#allUsers.isAdmin#</td>
+						<td>
+							<div class="deleteUser">
+								<button class="deleteUser" id="#allUsers.id#">Delete</button> 
+							</div>
+						</td>
 					</tr>
 				</cfoutput>
 			</table>

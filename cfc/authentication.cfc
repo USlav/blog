@@ -74,6 +74,7 @@ component displayname="authentication" {
 
 	
 	public query function getAllUsers() {
+		
 		var f = {};
 		f.qResult = queryExecute(
 			"SELECT * 
@@ -104,7 +105,42 @@ component displayname="authentication" {
 	}
 
 	
-	public void function deleteUser() {
-		
+	remote struct function deleteUser() {
+		var result = {};
+		var f = {};
+		try {
+			// Read the raw request body content
+			f.requestBody = toString(getHttpRequestData().content);
+			// Log the raw request body for debugging
+
+			// Parse the JSON content into a ColdFusion structure
+			f.requestData = deserializeJson(f.requestBody);
+
+			// Ensure the userId is being passed correctly
+			if (!structKeyExists(f.requestData, "userId")) {
+				throw(message="userId required but was not passed in", detail="The userId is missing from the request payload.");
+			}
+
+			f.userId = f.requestData.userId;
+			// Execute the DELETE query
+			queryExecute(
+				"DELETE FROM account WHERE id = :userId",
+				{ userId: { value: f.userId, cfsqltype: "integer" } 
+				},{datasource = application.datasource}
+			);
+
+			result["status"] = "success";
+			result["message"] = "User deleted successfully.";
+		} catch (any e) {
+			// Log the error details
+			writeLog(
+				text="Error in deleteUser function: #e.message# - #e.detail#",
+				type="error"
+			);
+			result["status"] = "error";
+			result["message"] = "Failed to delete user: " & e.message &e.detail;
+		}
+
+		return result;
 	}
 }
