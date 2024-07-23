@@ -254,3 +254,45 @@
 	right: 0; 
 	margin: 20 auto; 
 	}
+
+	table {
+		border-collapse:collapse;
+		margin: 50px auto;
+		width: 100%;
+	}
+	table caption {
+		text-align: left;
+		font-weight: bold;
+		margin-bottom: 15px;
+	}
+	table tr {
+		-moz-border-radius:5px;
+		-webkit-border-radius:5px;
+		border-radius:5px;
+		margin-left: 10px;
+		height: 30px;
+		background-color: #FBFBCE;
+	}
+	table tr td, table tr th {
+		padding: 5px;
+		margin: 3px 0px;
+		
+	}
+	table tr td a {
+		font-weight: bold;
+		color: #333;
+		text-decoration: underline;
+	}
+	table tr td a:hover {
+		color:#157498;
+	}
+	table tr th {
+		font-weight: bold;
+		text-align: left;
+	}
+	table tr:nth-child(2n) {
+		background-color:#4C5E78 ;
+	}
+	table tr:nth-child(2n+1) {
+		background-color: #666;
+	}

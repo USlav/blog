@@ -28,13 +28,16 @@ component displayname="authentication" {
 	}
 
 	
-	public query function isUserAdmin(required numeric id) {
+	public boolean function isUserAdmin(required numeric id) {
 		
 		f.qResult = queryExecute(
-			"SQL Query",
-			{params},
-			{ datasource=request.datasource, timeOut=application.queryTimeOut }
+			"SELECT isAdmin
+			FROM account
+			WHERE id = :id",
+			{id={value=arguments.id, cfsqltype="integer"}},
+			{ datasource=application.datasource}
 		);
+		return f.qResult.isAdmin;
 	}
 
 	
@@ -68,6 +71,32 @@ component displayname="authentication" {
 			{datasource=application.datasource}
 		);
 	}
+
+	
+	public query function getAllUsers() {
+		var f = {};
+		f.qResult = queryExecute(
+			"SELECT * 
+			FROM account",
+			{},
+			{ datasource=application.datasource }
+		);
+		return f.qResult;
+	}
+
+	
+	public query function getSingleUser(required numeric id) {
+		var f = {};
+		f.qResult = queryExecute(
+			"SELECT *
+			FROM account
+			WHERE id = :id",
+			{id={value=arguments.id, cfsqltype="integer"}},
+			{ datasource=application.datasource }
+		);
+		return f.qResult;
+	}
+
 	public function logoutUser() {
 		structDelete(session, "isUserLoggedIn");
 		structDelete(session, "userId");
