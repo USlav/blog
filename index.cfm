@@ -3,7 +3,6 @@
 <div class="image">
 	<img src="img/backgroundCode.png" alt="background code">
 </div>
-<main>
 	<div class="center">
 		<h1> To sem jaz! </h1>
 		<p>Nekaj na kratko o meni .... Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -23,7 +22,7 @@
 						<h3 class="post-title"><a href="blogPost.cfm?postId=#id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
-						<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>
+						<h4>#dateFormat(datePublished, application.dateMask )#</h4>
 					</div>
 					<span>
 						<p>#description#</p>
@@ -32,7 +31,5 @@
 			</cfoutput>		
 		</div>
 	</div>
-</main>
-</body>
-</html>
+<cfinclude template="footer.cfm">
 

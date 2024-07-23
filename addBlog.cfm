@@ -13,6 +13,4 @@
 			<input type="submit" value="Submit" name="blogSubmit">
 		</form>
 	</div>
-</main>
-</body>
-</html>
+<cfinclude template="footer.cfm">

@@ -5,7 +5,7 @@ component displayname="comments" {
 		f.qResult = queryExecute(
 			"SELECT comment.id, comment.comment, comment.datePublished, comment.accountId, account.username 
 			 FROM comment
-			 INNER JOIN account ON comment.accountId = account.id
+			 JOIN account ON comment.accountId = account.id
 			 WHERE comment.postId = :id",
 			{
 				id={value=arguments.postId, cfsqltype="integer"}
@@ -27,29 +27,30 @@ component displayname="comments" {
 		);
 	}
 
+	
 	remote struct function deleteComment() {
 		var result = {};
 		var f = {};
 		try {
 			// Read the raw request body content
-			var requestBody = toString(getHttpRequestData().content);
+			f.requestBody = toString(getHttpRequestData().content);
 			// Log the raw request body for debugging
-			writeLog(text="Raw request body: #requestBody#", type="info");
+			writeLog(text="Raw request body: #f.requestBody#", type="info");
 
 			// Parse the JSON content into a ColdFusion structure
-			var requestData = deserializeJson(requestBody);
+			f.requestData = deserializeJson(f.requestBody);
 
 			// Ensure the commentId is being passed correctly
-			if (!structKeyExists(requestData, "commentId")) {
+			if (!structKeyExists(f.requestData, "commentId")) {
 				throw(message="commentId required but was not passed in", detail="The commentId is missing from the request payload.");
 			}
 
-			var commentId = requestData.commentId;
+			f.commentId = f.requestData.commentId;
 
 			// Execute the DELETE query
 			queryExecute(
 				"DELETE FROM comment WHERE id = :commentId",
-				{ commentId: { value: commentId, cfsqltype: "integer" } 
+				{ commentId: { value: f.commentId, cfsqltype: "integer" } 
 				},{datasource = application.datasource}
 			);
 
@@ -66,8 +67,7 @@ component displayname="comments" {
 		}
 
 		return result;
-	}
-	
+	} 
 	
 	
 	

@@ -1,0 +1,17 @@
+{
+    "app":{
+        "cfengine":"adobe@2021",
+        "restMappings":"/rest/*"
+    },
+    "JVM":{
+        "args":"-Duser.language=sl -Duser.country=SI"
+    },
+    "name":"cf2021",
+    "web":{
+        "host":"localhost",
+        "http":{
+            "port":"8021"
+        },
+        "webroot":"/"
+    }
+}

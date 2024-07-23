@@ -23,17 +23,15 @@
 		}	
 	}
 </cfscript>
-
-<main>
 	<cfif structKeyExists(url, "deleteId")>
-		<cfif url.deleteId EQ 0>
+		<cfif url.deleteId eq 0>
 			<cfoutput>
-				<h2 class='action'>Select blog to delete!!</h2>
+				<h2 class="action">Select blog to delete!!</h2>
 			</cfoutput>
 		</cfif>
 	<cfelseif structKeyExists(url, "updateId")>
-		<cfif url.updateId EQ 0>
-			<cfoutput><h2 class='action'>Select blog to update!!</h2></cfoutput>
+		<cfif url.updateId eq 0>
+			<cfoutput><h2 class="action">Select blog to update!!</h2></cfoutput>
 		</cfif>
 	</cfif>
 	<div class="center">
@@ -67,7 +65,7 @@
 					</div>
 					
 					<div class="small-date">
-						<h4>#dateFormat(datePublished, "dd.mm.yyyy")#</h4>
+						<h4>#dateFormat(datePublished, application.dateMask)#</h4>
 					</div>
 					<span>
 						<p>#description#</p>
@@ -76,6 +74,4 @@
 			</cfoutput>
 		</div>
 	</div>
-</main>
-</body>
-</html>
+<cfinclude template="footer.cfm">

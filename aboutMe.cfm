@@ -20,7 +20,7 @@
 						<h3 class="post-title"><a href="blogPost.cfm?postId=#id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
-						<h4>#dateFormat(datePublished, 'dd.mm.yyyy')#</h4>
+						<h4>#dateFormat(datePublished, application.dateMask)#</h4>
 					</div>
 					<span>
 						<p>#description#</p>
@@ -30,8 +30,4 @@
 			
 		</div>
 	</div>
-	
-</main>
-
-</body>
-</html>
+<cfinclude template="footer.cfm">

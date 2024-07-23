@@ -1,8 +1,8 @@
 
 <cfinclude template="front.cfm">
 
-<cfif structKeyExists(form, 'blogUpdate')>
-	<cfif form.datePublished EQ ''>
+<cfif structKeyExists(form, "blogUpdate")>
+	<cfif form.datePublished eq "">
 		<cfset form.datePublished = now() />
 	</cfif>
 	
@@ -20,13 +20,11 @@
 				<label for="title">Blog title:</label><br>
 				<input type="text" id="title" name="title" value="#title#" required="true"><br>
 				<label for="datePublished">Publish date:</label><br>
-				<input type="date" id="datePublished" name="datePublished" value="#dateFormat(datePublished, 'dd.mm.yyyy')#"><br>
+				<input type="date" id="datePublished" name="datePublished" value="#dateFormat(datePublished, application.dateMask)#"><br>
 				<label for="description">Blog content::</label><br>
 				<textarea id="description" name="description" rows="25" cols="100" >#description#</textarea><br>
 				<input type="submit" value="Update" name="blogUpdate">
 			</form>
 		</cfoutput>
 	</div>
-</main>
-</body>
-</html>
+<cfinclude template="footer.cfm">

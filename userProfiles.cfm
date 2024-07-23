@@ -1,10 +1,8 @@
 <cfprocessingdirective pageencoding="utf-8">
 <cfinclude template="front.cfm">
 
-<main>
 	<div class="center">
-		<cfset isAdmin = application.authentication.isUserAdmin(session.userId.id)>
-		<cfif isAdmin>
+		<cfif session.isAdmin>
 			<cfset allUsers = application.authentication.getAllUsers()>
 			
 			<h1> Profili uporabnikov </h1>
@@ -19,14 +17,15 @@
 					<tr>
 						<td>#username#</td>
 						<td>#email#</td>
-						<td>#dateFormat(dateCreated, "dd-mm-yyyy")#</td>
+						<td>#dateFormat(dateCreated, application.dateMask)#</td>
 						<td>#isAdmin#</td>
+						<td><a href="javascript:confirmDelete(#session.userId.id#);">Delete</a></td>
 					</tr>
 				</cfoutput>
 			</table>
 		<cfelse>
 			<cfset singleUser = application.authentication.getSingleUser(session.userId.id)>
-			<cfoutput>
+
 				<h1> Tvoj profil </h1>
 				<table>
 					<tr>
@@ -40,13 +39,10 @@
 							<td>#username#</td>
 							<td>#password#</td>
 							<td>#email#</td>
-							<td>#dateFormat(dateCreated, "dd-mm-yyyy")#</td>
+							<td>#dateFormat(dateCreated, application.dateMask)#</td>
 						</tr>
 					</cfoutput>
 				</table>
-			</cfoutput>
 		</cfif>
 	</div>
-</main>
-</body>
-</html>
+<cfinclude template="footer.cfm">

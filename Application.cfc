@@ -6,8 +6,9 @@ component{
  	this.sessionTimeout = createTimespan(0,0,30,0);
 	//on application start method
 	boolean function onApplicationStart(){
-		record = deserializeJSON(fileRead("config.json", "utf-8"));
+		record = deserializeJSON(fileRead("c:/PIA/blog/config.json", "utf-8"));
 		application.datasource = record.datasource;
+		application.dateMask = "dd-mm-yyyy";
 		application.posts = createObject("component", "cfc.posts");
 		application.comments = createObject("component", "cfc.comments");
 		application.authentication = createObject("component", "cfc.authentication");
@@ -25,5 +26,5 @@ component{
         writeDump(var=arguments, label="arguments");
 		abort;
 		return;
-    }
+    } 
 }
