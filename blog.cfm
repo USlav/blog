@@ -36,9 +36,8 @@
 			<cfoutput><h2 class='action'>Select blog to update!!</h2></cfoutput>
 		</cfif>
 	</cfif>
-	
-	<h1>&lt Blog! /&gt</h1>
 	<div class="center">
+		<h1> Blog! </h1>
 		<cfif structKeyExists(session, "isUserLoggedIn")>
 			<nav class="option-menu">
 				<div class="option">

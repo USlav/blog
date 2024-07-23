@@ -7,23 +7,13 @@ component displayname="comments" {
 			 FROM comment
 			 INNER JOIN account ON comment.accountId = account.id
 			 WHERE comment.postId = :id",
-			{id={value=arguments.postId, cfsqltype="integer"}}
+			{
+				id={value=arguments.postId, cfsqltype="integer"}
+			},{datasource = application.datasource}
 		);
 		return f.qResult;
 	}
 
-	
-	/* public query function getUserWhoCommented(required numeric accountId) {
-		var f = {};
-		f.qResult = queryExecute(
-			"SELECT username 
-			FROM account
-			WHERE id = :accountId",
-			{accountId={value=arguments.accountId, cfsqltype="integer"}}
-		);
-		return f.qResult;
-	} */
-	
 	public function addComment(required string comment, required numeric postId, required date datePublished, required numeric userId) {
 		queryExecute(
 			"INSERT INTO comment (postId, comment, datePublished, accountId)
@@ -33,7 +23,7 @@ component displayname="comments" {
 				comment={value=arguments.comment, cfsqltype="varchar"},
 				datePublished={value=arguments.datePublished, cfsqltype="timestamp"},
 				userId={value=arguments.userId, cfsqltype="integer"}
-			}
+			},{datasource = application.datasource}
 		);
 	}
 
@@ -59,7 +49,8 @@ component displayname="comments" {
 			// Execute the DELETE query
 			queryExecute(
 				"DELETE FROM comment WHERE id = :commentId",
-				{ commentId: { value: commentId, cfsqltype: "integer" } }
+				{ commentId: { value: commentId, cfsqltype: "integer" } 
+				},{datasource = application.datasource}
 			);
 
 			result["status"] = "success";

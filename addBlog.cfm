@@ -1,7 +1,7 @@
 <cfinclude template="front.cfm">
 
 <main>
-	<h1>&lt Dodaj blog! /&gt</h1>
+	<h1> Dodaj blog! </h1>
 	<div class="center">
 		<form id="form_addBlog" action="blog.cfm" method="post">
 			<label for="title">Blog title:</label><br>

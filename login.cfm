@@ -1,3 +1,5 @@
+<cfprocessingdirective pageencoding="utf-8">
+
 <cfif structKeyExists(url, "logOut")>
 	<cfset application.authentication.logoutUser()>
 </cfif>
@@ -27,6 +29,7 @@
 						<input type="password"id="password" name="password" placeholder="Enter your Password" required>
 						<input type="submit" name="confirmUser" value="Potrdi">		
 				</form>
+				<p><a href="register.cfm">Še nimaš računa? Registriraj se!</a></p>
 			</cfoutput>
 		</cfif>	
 		

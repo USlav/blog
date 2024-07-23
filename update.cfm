@@ -13,7 +13,7 @@
 <cfset postToUpdate = application.posts.getPostById(url.updateId)>
 
 <main>
-	<h1>&lt Uredi blog! /&gt</h1>
+	<h1> Uredi blog! </h1>
 	<div class="center">
 		<cfoutput query="postToUpdate">
 			<form id="form_updateBlog" action="update.cfm?updateId=#id#" method="POST">

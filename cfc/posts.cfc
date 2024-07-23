@@ -7,7 +7,9 @@ component displayname="posts"{
 			"SELECT title, description, datePublished, id 
 			FROM post 
 			WHERE id = :id"
-			,{id={value=arguments.postId, cfsqltype="integer"}}
+			,{
+				id={value=arguments.postId, cfsqltype="integer"}
+			},{datasource = application.datasource}
 		);
 		return f.qResult;
 	}
@@ -19,7 +21,7 @@ component displayname="posts"{
 			"SELECT title, description, datePublished, id 
 			FROM post
 			ORDER BY datePublished DESC"
-			,{}
+			,{},{datasource = application.datasource}
 			);
 		}else{
 			f.qResult = queryExecute(
@@ -28,7 +30,7 @@ component displayname="posts"{
 			ORDER BY datePublished DESC"
 			,{
 				num={value=arguments.numOfPosts, cfsqltype="integer"}
-			}
+			},{datasource = application.datasource}
 			);
 		}
 		return f.qResult;
@@ -45,7 +47,7 @@ component displayname="posts"{
 				description={value=arguments.description, cfsqltype="varchar" },
 				accountId={value=1, cfsqltype="numeric"},
 				isPublished={value=0, cfsqltype="numeric"}
-			}
+			},{datasource = application.datasource}
 		);
 		
 	}
@@ -54,7 +56,8 @@ component displayname="posts"{
 		queryExecute(
 			"DELETE FROM post 
 			WHERE id = :id",
-			{id={value=arguments.postId, cfsqltype="integer"}}
+			{id={value=arguments.postId, cfsqltype="integer"}
+			},{datasource = application.datasource}
 		);
 	}
 
@@ -68,7 +71,7 @@ component displayname="posts"{
 				datePublished={value=arguments.datePublished, cfsqltype="timestamp"},
 				description={value=arguments.description, cfsqltype="varchar" },
 				id = {value=arguments.id, cfsqltype="integer"}
-			}
+			},{datasource = application.datasource}
 		);
 	}
 

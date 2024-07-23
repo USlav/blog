@@ -11,9 +11,8 @@
 	renderedComments = application.comments.getCommentsByPostId(url.postId);
 </cfscript>
 <main>
-	<h1>&lt Blog! /&gt</h1>
-
 	<div class="center">
+		<h1> Blog! </h1>
 		<cfset singlePost = application.posts.getPostById(url.postId)>		
 		<div class="blog-objava-recent-post">
 			<cfoutput query="singlePost">
@@ -29,7 +28,7 @@
 				</span>
 			</cfoutput>	
 		</div>
-		<h1 class="comment-title">&lt komentarji /&gt</h1>
+		<h1> komentarji </h1>
 		<cfoutput query="renderedComments">
 			<div class="comment" id="comment-#id#">
 				<p>#comment#</p>
