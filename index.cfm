@@ -13,7 +13,7 @@
 		<h2> Zadnje objave v blogu </h2>
 
 		
-		<cfset recentPosts = application.posts.renderRecentPosts(6)>
+		<cfset recentPosts = application.posts.getRecentPosts(6)>
 		
 		<div class="recent-posts">
 

@@ -1,0 +1,17 @@
+{
+    "app":{
+        "cfengine":"lucee@5.4.3.2",
+        "restMappings":"/rest/*"
+    },
+    "JVM":{
+        "args":"-Duser.language=sl -Duser.country=SI"
+    },
+    "name":"lucee5432",
+    "web":{
+        "host":"localhost",
+        "http":{
+            "port":"9005"
+        },
+        "webroot":"/"
+    }
+}

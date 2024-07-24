@@ -11,7 +11,7 @@
 		<h2> Pišem tudi blog! </h2>
 
 		<!---renderPosts--->
-		<cfset  recentPosts = application.posts.renderRecentPosts(3)>
+		<cfset  recentPosts = application.posts.getRecentPosts(3)>
 
 		<div class="recent-posts">
 			<cfoutput query="recentPosts">

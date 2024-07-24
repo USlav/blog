@@ -14,9 +14,9 @@ component displayname="posts"{
 		return f.qResult;
 	}
 
-	public query function renderRecentPosts(numeric numOfPosts=0){
+	public query function getRecentPosts(numeric numOfPosts=0){
 		var f = {};
-		if (numOfPosts == 0) {
+		if (arguments.numOfPosts == 0) {
 			f.qResult = queryExecute(
 			"SELECT title, description, datePublished, id 
 			FROM post

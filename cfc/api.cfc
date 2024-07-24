@@ -2,6 +2,7 @@ component restpath="/post" rest="true"{
 	remote struct function getOS() httpmethod="GET" restpath="os"{
 		return server.os;
 	}
+}
 	/* remote function getPostWithComments(required numeric postId) httpmethod="post" restpath="post"{
 		var f = {};
 		f.qPost = application.posts.getPostByid(arguments.postId);
@@ -19,4 +20,5 @@ component restpath="/post" rest="true"{
 
 		return serializeJSON(f.qPostComments, "struct");
 	} */
-}
+
+
