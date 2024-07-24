@@ -14,7 +14,7 @@
 					<th>admin</th>
 				</tr>
 				<cfoutput query="allUsers">
-					<tr class="user-#allusers.id#">
+					<tr id="user-#allusers.id#" >
 						<td>#allusers.username#</td>
 						<td>#allUsers.email#</td>
 						<td>#dateFormat(allUsers.dateCreated, application.dateMask)#</td>
