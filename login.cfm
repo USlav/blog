@@ -19,7 +19,7 @@
 		<cfelseif structKeyExists(form, "confirmUser") and session.isUserLoggedIn eq false>
 			<h2 class="action">Login failed!</h2>
 		</cfif>
-		<h3>Prijavi se:</h3>
+		<h1> Prijavi se </h1>
 		<form action="login.cfm" class="login-form" method="POST">
 				<label for="username">Username:</label>
 				<input type="text" id="username" name="username" placeholder="Enter your Username" required>

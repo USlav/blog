@@ -24,18 +24,18 @@
 		}	
 	}
 </cfscript>
-	<cfif structKeyExists(url, "deleteId")>
-		<cfif url.deleteId eq 0>
-			<cfoutput>
-				<h2 class="action">Select blog to delete!!</h2>
-			</cfoutput>
-		</cfif>
-	<cfelseif structKeyExists(url, "updateId")>
-		<cfif url.updateId eq 0>
-			<cfoutput><h2 class="action">Select blog to update!!</h2></cfoutput>
-		</cfif>
-	</cfif>
 	<div class="center">
+		<cfif structKeyExists(url, "deleteId")>
+			<cfif url.deleteId eq 0>
+				<cfoutput>
+					<h2 class="action">Select blog to delete!!</h2>
+				</cfoutput>
+			</cfif>
+		<cfelseif structKeyExists(url, "updateId")>
+			<cfif url.updateId eq 0>
+				<cfoutput><h2 class="action">Select blog to update!!</h2></cfoutput>
+			</cfif>
+		</cfif>
 		<h1> Blog! </h1>
 		<cfif structKeyExists(session, "isUserLoggedIn")>
 			<nav class="option-menu">

@@ -6,12 +6,13 @@
 			<cfset allUsers = application.authentication.getAllUsers()>
 			
 			<h1> Profili uporabnikov </h1>
-			<table>
+			<table class="user-table">
 				<tr>
 					<th>username</th>
 					<th>email</th>
 					<th>creation date</th>
 					<th>admin</th>
+					<th></th>
 				</tr>
 				<cfoutput query="allUsers">
 					<tr id="user-#allusers.id#" >
@@ -31,7 +32,7 @@
 			<cfset singleUser = application.authentication.getSingleUser(session.userId.id)>
 
 				<h1> Tvoj profil </h1>
-				<table>
+				<table class="user-table">
 					<tr>
 						<th>username</th>
 						<th>password</th>

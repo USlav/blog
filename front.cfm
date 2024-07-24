@@ -14,9 +14,29 @@
 <header>
 	<nav id="top-bar">
 		<ul class="menu">
-			<li class="bold-menu"><a href="index.cfm"> Domov </a></li>
-			<li><a href="aboutMe.cfm">O meni</a></li>
-			<li><a href="blog.cfm">Blog</a></li>
+			<div class="menu-center"></div>
+			<li><a href="index.cfm"> Domov </a></li>
+			<li><a href="aboutMe.cfm?aboutMe">O meni</a></li>
+			<cfif structKeyExists(url, "aboutMe")>
+				<div class="icon-position-aboutMe">
+					<div class="icon-aboutMe">
+						<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
+					</div>
+				</div>
+			<cfelseif structKeyExists(url, "blog")>
+				<div class="icon-position-blog">
+					<div class="icon-blog">
+						<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
+					</div>
+				</div>
+			<cfelse>
+				<div class="icon-position">
+					<div class="icon">
+						<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
+					</div>
+				</div>
+			</cfif>
+			<li><a href="blog.cfm?blog">Blog</a></li>
 			<cfif NOT structKeyExists(session, "isUserLoggedIn")>
 				<li class="prijava"><a href="login.cfm?logIn">Prijava</a></li>
 			<cfelse>

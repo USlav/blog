@@ -50,7 +50,7 @@
 					<form id="form_addComment" action="blogPost.cfm?postId=#currentPost#" method="POST">
 						<label for="comment">Dodaj komentar:</label><br>
 						<textarea name="comment" rows="10" cols="100" required=true></textarea><br>
-						<input type="submit" value="Submit" name="commentSubmit">
+						<input class="button-style" type="submit" value="Submit" name="commentSubmit">
 					</form>
 				</div>
 			</cfoutput>

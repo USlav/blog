@@ -12,6 +12,7 @@ component{
 		application.posts = createObject("component", "cfc.posts");
 		application.comments = createObject("component", "cfc.comments");
 		application.authentication = createObject("component", "cfc.authentication");
+		//application.api = createObject("component","cfc.api" )
 		return true;
 	}
 	//onRequestStart() method 
