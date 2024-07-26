@@ -28,30 +28,15 @@ component displayname="comments" {
 	}
 
 	
-	remote struct function deleteComment() {
+	remote struct function deleteComment(required numeric commentId) {
 		var result = {};
-		var f = {};
 		try {
-			// Read the raw request body content
-			f.requestBody = toString(getHttpRequestData().content);
-			// Log the raw request body for debugging
-			writeLog(text="Raw request body: #f.requestBody#", type="info");
-
-			// Parse the JSON content into a ColdFusion structure
-			f.requestData = deserializeJson(f.requestBody);
-
-			// Ensure the commentId is being passed correctly
-			if (!structKeyExists(f.requestData, "commentId")) {
-				throw(message="commentId required but was not passed in", detail="The commentId is missing from the request payload.");
-			}
-
-			f.commentId = f.requestData.commentId;
-
-			// Execute the DELETE query
 			queryExecute(
 				"DELETE FROM comment WHERE id = :commentId",
-				{ commentId: { value: f.commentId, cfsqltype: "integer" } 
-				},{datasource = application.datasource}
+				{ 
+					commentId: { value: arguments.commentId, cfsqltype: "integer" } 
+				},
+				{datasource = application.datasource}
 			);
 
 			result["status"] = "success";
@@ -65,7 +50,6 @@ component displayname="comments" {
 			result["status"] = "error";
 			result["message"] = "Failed to delete comment: " & e.message;
 		}
-
 		return result;
 	} 
 	

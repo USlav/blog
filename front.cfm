@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="css/index.css">
+	<script type="text/javascript" src="js/app.js"></script>
 	<script type="text/javascript" src="js/comments.js"></script>
 	<script type="text/javascript" src="js/users.js"></script>
 	<title>Document</title>
@@ -40,7 +41,7 @@
 			<cfif NOT structKeyExists(session, "isUserLoggedIn")>
 				<li class="prijava"><a href="login.cfm?logIn">Prijava</a></li>
 			<cfelse>
-				<cfif structKeyExists(session, "isAdmin") AND session.isAdmin>
+				<cfif structKeyExists(session, "user") AND session.user.isAdmin>
 					<li class="userProfiles"><a href="userProfiles.cfm">Profili</a></li>
 				<cfelse>
 					<li class="userProfiles"><a href="userProfiles.cfm">Tvoj profil</a></li>

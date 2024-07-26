@@ -6,14 +6,14 @@
 	currentDate = now();
 	currentPost = url.postId;
 	if (structKeyExists(form, "commentSubmit")){
-		application.comments.addComment(form.comment, url.postId, currentDate, session.userId.id);
+		application.comments.addComment(form.comment, url.postId, currentDate, session.user.userId);
 	}
-	renderedComments = application.comments.getCommentsByPostId(url.postId);
+	commentsOnPost = application.comments.getCommentsByPostId(url.postId);
+	singlePost = application.posts.getPostById(url.postId);
 </cfscript>
 <main>
 	<div class="center">
 		<h1> Blog! </h1>
-		<cfset singlePost = application.posts.getPostById(url.postId)>		
 		<div class="blog-objava-recent-post">
 			<cfoutput query="singlePost">
 				<div class="small-date">
@@ -28,23 +28,21 @@
 				</span>
 			</cfoutput>	
 		</div>
-
 		<h1> komentarji </h1>
-		<cfoutput query="renderedComments">
-			<div class="comment" id="comment-#id#">
-				<p>#comment#</p>
+		<cfoutput query="commentsOnPost">
+			<div class="comment" id="comment-#commentsOnPost.id#">
+				<p>#commentsOnPost.comment#</p>
 				
 				<div class="small-date">
-					<p>Posted by: #username#</p>
-					<h4>#dateFormat(datePublished, application.dateMask)#</h4>
+					<p>Posted by: #commentsOnPost.username#</p>
+					<h4>#dateFormat(commentsOnPost.datePublished, application.dateMask)#</h4>
 				</div>
 				<div class="deleteComment">
-					<button class="deleteButton" id="#id#">Delete</button> 
+					<button class="deleteButton" id="#commentsOnPost.id#">Delete</button> 
 				</div>
 			</div>
 		</cfoutput>
-		
-		<cfif structKeyExists(session, "userId")>
+		<cfif structKeyExists(session, "user")>
 			<cfoutput>
 				<div class="addComment">
 					<form id="form_addComment" action="blogPost.cfm?postId=#currentPost#" method="POST">

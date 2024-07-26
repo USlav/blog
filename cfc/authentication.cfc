@@ -105,27 +105,12 @@ component displayname="authentication" {
 	}
 
 	
-	remote struct function deleteUser() {
+	remote struct function deleteUser(required numeric userId) {
 		var result = {};
-		var f = {};
 		try {
-			// Read the raw request body content
-			f.requestBody = toString(getHttpRequestData().content);
-			// Log the raw request body for debugging
-
-			// Parse the JSON content into a ColdFusion structure
-			f.requestData = deserializeJson(f.requestBody);
-
-			// Ensure the userId is being passed correctly
-			if (!structKeyExists(f.requestData, "userId")) {
-				throw(message="userId required but was not passed in", detail="The userId is missing from the request payload.");
-			}
-
-			f.userId = f.requestData.userId;
-			// Execute the DELETE query
 			queryExecute(
 				"DELETE FROM account WHERE id = :userId",
-				{ userId: { value: f.userId, cfsqltype: "integer" } 
+				{ userId: { value: arguments.userId, cfsqltype: "integer" } 
 				},{datasource = application.datasource}
 			);
 
@@ -143,4 +128,5 @@ component displayname="authentication" {
 
 		return result;
 	}
+	
 }

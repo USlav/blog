@@ -6,7 +6,7 @@
 			form.datePublished = now();
 		}
 		
-		application.posts.addPost(form.title,form.datePublished,form.description, session.userId.id);
+		application.posts.addPost(form.title,form.datePublished,form.description, session.user.userId);
 		location("blog.cfm");
 	}
 
@@ -50,18 +50,18 @@
 				</div>
 			</nav>
 		</cfif>	
-		<cfset  recentPosts = application.posts.renderRecentPosts()>
+		<cfset  recentPosts = application.posts.getRecentPosts()>
 
 		<div class="blog-recent-posts">
 			<cfoutput query="recentPosts">
 				<div class="blog-recent-post"><a href="blog.cfm?deleteId=#id#">
 					<div class="blog-post">
 						<cfif structKeyExists(url, "deleteId")>
-								<h3><a href="blog.cfm?deleteId=#id#">#title#</a></h3>							
+							<h3><a href="blog.cfm?deleteId=#id#">#title#</a></h3>							
 						<cfelseif structKeyExists(url,"updateId")>
-								<h3><a href="update.cfm?updateId=#id#">#title#</a></h3>
+							<h3><a href="update.cfm?updateId=#id#">#title#</a></h3>
 						<cfelse>							
-								<h3><a href="blogPost.cfm?postId=#id#">#title#</a></h3>							
+							<h3><a href="blogPost.cfm?postId=#id#">#title#</a></h3>							
 						</cfif>
 					</div>
 					

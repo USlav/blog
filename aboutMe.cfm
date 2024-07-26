@@ -1,7 +1,9 @@
 <cfprocessingdirective pageencoding="utf-8">
 <cfinclude template="front.cfm">
+<cfscript>
+	recentPosts = application.posts.getRecentPosts(application.threePosts);
+</cfscript>
 <main>
-	
 	<div class="center">
 		<h1> O meni! </h1>
 		<div class="container">
@@ -11,19 +13,17 @@
 		<h2> Pišem tudi blog! </h2>
 
 		<!---renderPosts--->
-		<cfset  recentPosts = application.posts.getRecentPosts(3)>
-
 		<div class="recent-posts">
 			<cfoutput query="recentPosts">
 				<div class="recent-post">
 					<div class="post">
-						<h3 class="post-title"><a href="blogPost.cfm?postId=#id#">#title#</a></h3>
+						<h3 class="post-title"><a href="blogPost.cfm?postId=#recentPosts.id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
-						<h4>#dateFormat(datePublished, application.dateMask)#</h4>
+						<h4>#dateFormat(recentPosts.datePublished, application.dateMask)#</h4>
 					</div>
 					<span>
-						<p>#description#</p>
+						<p>#recentPosts.description#</p>
 					</span>
 				</div>
 			</cfoutput>

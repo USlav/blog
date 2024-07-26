@@ -8,10 +8,13 @@ component{
 	boolean function onApplicationStart(){
 		record = deserializeJSON(fileRead("c:/PIA/blog/config.json", "utf-8"));
 		application.datasource = record.datasource;
+		application.threePosts = record.threePosts;
+		application.sixPosts = record.sixPosts;
 		application.dateMask = "dd-mm-yyyy";
 		application.posts = createObject("component", "cfc.posts");
 		application.comments = createObject("component", "cfc.comments");
 		application.authentication = createObject("component", "cfc.authentication");
+		application.errors = [];
 		//application.api = createObject("component","cfc.api" )
 		return true;
 	}
@@ -24,8 +27,9 @@ component{
 	}
 	
 	public void function onError(required any exception, required string eventName) {
-        writeDump(var=arguments, label="arguments");
-		abort;
+        arrayAppend(application.errors, arguments.exception);
+		//writeDump(var=arguments, label="arguments");
+		//abort;
 		return;
     } 
 }

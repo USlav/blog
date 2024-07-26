@@ -1,0 +1,55 @@
+
+<!-- ==start== dump {ts '2024-07-25 11:15:09'} format: html -->
+<div id="x31s" class="-lucee-dump"><style>
+	.-lucee-dump .disp-none { display: none; }
+	</style>
+	<script>
+	window.__Lucee = { initialized : false,
+					addEventListeners : function(selector, event, handler, useCapture){
+						useCapture = useCapture || false;
+						Array.prototype.forEach.call(
+							 document.querySelectorAll(selector)
+							,function(el, ix) {
+							  el.addEventListener(event, handler, useCapture);
+							}
+						);
+					}
+					,getNextSiblings   : function(el){
+						var  orig = el
+							,result = [];
+						while (el && el.nodeType === Node.ELEMENT_NODE) {
+							if (el !== orig)
+								result.push(el);
+							el = el.nextElementSibling || el.nextSibling;
+						}
+						return result;
+					}
+					,onDocumentReady		   : function(){
+						var L = window.__Lucee;
+						if (L.initialized)
+							return;
+						L.addEventListeners(".collapse-trigger", "click", function(evt){
+							var tr = evt.target.closest("tr");
+							var siblings = L.getNextSiblings(tr);
+							siblings.forEach(function(el, ix){
+								el.classList.toggle("disp-none");
+							});
+						});
+						L.initialized = true;
+					}
+				}
+				
+	document.addEventListener("DOMContentLoaded", __Lucee.onDocumentReady);
+	</script>
+	<style type="text/css">
+	div#x31s table {font-family:Verdana, Geneva, Arial, Helvetica, sans-serif; font-size:11px; empty-cells:show; color:#000; border-collapse:collapse;}
+	div#x31s td {border:1px solid #000; vertical-align:top; padding:2px; empty-cells:show;}
+	div#x31s td span {font-weight:bold;}
+	div#x31s td.luceeN0 {color:#990000;border-color:#990000;background-color:#fc9;}
+	div#x31s td.luceeH0 {color:#990000;border-color:#990000;background-color:#f60;}
+	div#x31s td.luceeN1 {color:#999999;border-color:#999999;background-color:#ccc;}
+	div#x31s td.luceeH1 {color:#999999;border-color:#999999;background-color:#fff;}
+	</style>
+	<table title="C:\PIA\blog\cfc\comments.cfc:34"><tr><td class="luceeH1">arguments</td></tr><tr><td class="luceeN1"><table><tr><td class="luceeH0">string</td><td class="luceeN0">18</td></tr></table></td></tr></table></div>
+	<!-- ==stop== dump -->
+	

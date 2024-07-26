@@ -1,3 +1,5 @@
 {
-	"datasource":"blog"
+	"datasource":"blog",
+	"sixPosts": "6",
+	"threePosts": "3"
 }
