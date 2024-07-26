@@ -1,0 +1,5 @@
+{
+	"datasource":"blog",
+	"maxPostsIndex": "6",
+	"maxPostsAboutMe": "3"
+}

@@ -50,10 +50,10 @@
 				</div>
 			</nav>
 		</cfif>	
-		<cfset  recentPosts = application.posts.getRecentPosts()>
+		<cfset  qPosts = application.posts.getPosts()>
 
 		<div class="blog-recent-posts">
-			<cfoutput query="recentPosts">
+			<cfoutput query="qPosts">
 				<div class="blog-recent-post"><a href="blog.cfm?deleteId=#id#">
 					<div class="blog-post">
 						<cfif structKeyExists(url, "deleteId")>

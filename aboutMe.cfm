@@ -1,7 +1,7 @@
 <cfprocessingdirective pageencoding="utf-8">
 <cfinclude template="front.cfm">
 <cfscript>
-	recentPosts = application.posts.getRecentPosts(application.threePosts);
+	qPosts = application.posts.getPosts(application.maxPostsAboutMe);
 </cfscript>
 <main>
 	<div class="center">
@@ -14,16 +14,16 @@
 
 		<!---renderPosts--->
 		<div class="recent-posts">
-			<cfoutput query="recentPosts">
+			<cfoutput query="qPosts">
 				<div class="recent-post">
 					<div class="post">
-						<h3 class="post-title"><a href="blogPost.cfm?postId=#recentPosts.id#">#title#</a></h3>
+						<h3 class="post-title"><a href="blogPost.cfm?postId=#qPosts.id#">#title#</a></h3>
 					</div>
 					<div class="small-date">
-						<h4>#dateFormat(recentPosts.datePublished, application.dateMask)#</h4>
+						<h4>#dateFormat(qPosts.datePublished, application.dateMask)#</h4>
 					</div>
 					<span>
-						<p>#recentPosts.description#</p>
+						<p>#qPosts.description#</p>
 					</span>
 				</div>
 			</cfoutput>

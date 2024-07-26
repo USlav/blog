@@ -20,6 +20,7 @@
 			<li><a href="aboutMe.cfm?aboutMe">O meni</a></li>
 			<cfif structKeyExists(url, "aboutMe")>
 				<div class="icon-position-aboutMe">
+					<div class="semi-circle"></div>
 					<div class="icon-aboutMe">
 						<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
 					</div>
@@ -31,9 +32,10 @@
 					</div>
 				</div>
 			<cfelse>
-				<div class="icon-position">
-					<div class="icon">
-						<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
+					<div class="icon-position">
+						<div class="icon">
+							<img src="img/happy-man-Photoroom.png" alt="happy man" class="happy-man">
+						</div>
 					</div>
 				</div>
 			</cfif>
