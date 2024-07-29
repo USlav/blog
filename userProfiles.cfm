@@ -1,6 +1,6 @@
 <cfprocessingdirective pageencoding="utf-8">
 <cfscript>
-	singleUser = application.authentication.getSingleUser(session.user.userId);
+	qSingleUser = application.authentication.getSingleUser(session.user.userId);
 	allUsers = application.authentication.getAllUsers();
 </cfscript>
 <cfinclude template="front.cfm">
@@ -38,12 +38,12 @@
 				<th>email</th>
 				<th>creation date</th>
 			</tr>
-			<cfoutput query="singleUser">
+			<cfoutput query="qSingleUser">
 				<tr>
-					<td>#singleUser.username#</td>
-					<td>#singleUser.password#</td>
-					<td>#singleUser.email#</td>
-					<td>#dateFormat(singleUser.dateCreated, application.dateMask)#</td>
+					<td>#qSingleUser.username#</td>
+					<td>#qSingleUser.password#</td>
+					<td>#qSingleUser.email#</td>
+					<td>#dateFormat(qSingleUser.dateCreated, application.dateMask)#</td>
 				</tr>
 			</cfoutput>
 		</table>

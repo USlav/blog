@@ -8,37 +8,37 @@
 	if (structKeyExists(form, "commentSubmit")){
 		application.comments.addComment(form.comment, url.postId, currentDate, session.user.userId);
 	}
-	commentsOnPost = application.comments.getCommentsByPostId(url.postId);
-	singlePost = application.posts.getPostById(url.postId);
+	qCommentsOnPost = application.comments.getCommentsByPostId(url.postId);
+	qSinglePost = application.posts.getPostById(url.postId);
 </cfscript>
 <main>
 	<div class="center">
 		<h1> Blog! </h1>
 		<div class="blog-objava-recent-post">
-			<cfoutput query="singlePost">
+			<cfoutput query="qSinglePost">
 				<div class="small-date">
-					<h4>#dateFormat(datePublished, application.dateMask)#</h4>
+					<h4>#dateFormat(qSinglePost.datePublished, application.dateMask)#</h4>
 				</div>
 				<div class="blog-objava-post">
-					<h3>#title#</h3>
+					<h3>#qSinglePost.title#</h3>
 				</div>
 				
 				<span>
-					<p>#description#</p>
+					<p>#qSinglePost.description#</p>
 				</span>
 			</cfoutput>	
 		</div>
 		<h1> komentarji </h1>
-		<cfoutput query="commentsOnPost">
-			<div class="comment" id="comment-#commentsOnPost.id#">
-				<p>#commentsOnPost.comment#</p>
+		<cfoutput query="qCommentsOnPost">
+			<div class="comment" id="comment-#qCommentsOnPost.id#">
+				<p>#qCommentsOnPost.comment#</p>
 				
 				<div class="small-date">
-					<p>Posted by: #commentsOnPost.username#</p>
-					<h4>#dateFormat(commentsOnPost.datePublished, application.dateMask)#</h4>
+					<p>Posted by: #qCommentsOnPost.username#</p>
+					<h4>#dateFormat(qCommentsOnPost.datePublished, application.dateMask)#</h4>
 				</div>
 				<div class="deleteComment">
-					<button class="deleteButton" id="#commentsOnPost.id#">Delete</button> 
+					<button class="deleteButton" id="#qCommentsOnPost.id#">Delete</button> 
 				</div>
 			</div>
 		</cfoutput>
