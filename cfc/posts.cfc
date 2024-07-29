@@ -1,5 +1,3 @@
-
-
 component displayname="posts"{
 	public query function getPostById(required numeric postId){
 		var f = {};

@@ -6,6 +6,7 @@
 	if (structKeyExists(form, "confirmUser")) {
 		session.isUserLoggedIn = application.authentication.authenticateUser(form.username, form.password);
 		if (session.isUserLoggedIn) {
+			session.user = {};
 			session.user.userId = application.authentication.getUserId(form.username, form.password).id;
 			session.user.isAdmin = application.authentication.isUserAdmin(session.user.userId);
 		}

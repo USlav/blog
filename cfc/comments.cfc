@@ -3,10 +3,10 @@ component displayname="comments" {
 	public query function getCommentsByPostId(required numeric postId) {
 		var f = {};
 		f.qResult = queryExecute(
-			"SELECT comment.id, comment.comment, comment.datePublished, comment.accountId, account.username 
-			 FROM comment
-			 JOIN account ON comment.accountId = account.id
-			 WHERE comment.postId = :id",
+			"SELECT c.id, c.comment, c.datePublished, c.accountId, a.username 
+			 FROM comment c
+			 JOIN account a ON c.accountId = a.id
+			 WHERE c.postId = :id",
 			{
 				id={value=arguments.postId, cfsqltype="integer"}
 			},{datasource = application.datasource}

@@ -6,10 +6,12 @@ component{
  	this.sessionTimeout = createTimespan(0,0,30,0);
 	//on application start method
 	boolean function onApplicationStart(){
-		record = deserializeJSON(fileRead("config_example.json", "utf-8"));
-		application.datasource = record.datasource;
-		application.maxPostsAboutMe = record.maxPostsAboutMe;
-		application.maxPostsIndex = record.maxPostsIndex;
+		var f = {}
+		f.currentDirectory = getDirectoryFromPath( getCurrentTemplatePath());
+		f.record = deserializeJSON(fileRead(f.currentDirectory & "config.json", "utf-8"));
+		application.datasource = f.record.datasource;
+		application.maxPostsAboutMe = f.record.maxPostsAboutMe;
+		application.maxPostsIndex = f.record.maxPostsIndex;
 		application.dateMask = "dd-mm-yyyy";
 		application.posts = createObject("component", "cfc.posts");
 		application.comments = createObject("component", "cfc.comments");
